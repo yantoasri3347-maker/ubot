@@ -1,0 +1,85 @@
+import random
+from PyroUbot import *
+
+__MODULE__ = "paptt"
+__HELP__ = """
+<blockquote><b>Bantuan Random PapTt</b>
+
+Perintah:
+<code>{0}paptt</code> → Kirim foto / video Paptt random
+</blockquote>
+"""
+
+# FOTO PAPTT
+PAPTT_PHOTO = [
+    "https://files.catbox.moe/kusho1.jpg",
+    "https://files.catbox.moe/fzzhjm.jpg",
+    "https://files.catbox.moe/qhr4fl.jpg",
+    "https://files.catbox.moe/kwb2m2.jpg",
+    "https://files.catbox.moe/8xye1k.jpg",
+    "https://files.catbox.moe/2mowo7.jpg",
+    "https://files.catbox.moe/73rjgf.jpg",
+    "https://files.catbox.moe/3re1pn.jpg",
+    "https://files.catbox.moe/sclrvo.jpg",
+    "https://files.catbox.moe/l3sra9.jpg",
+    "https://files.catbox.moe/9vtw1i.jpg",
+    "https://files.catbox.moe/y91pkz.jpg",
+    "https://files.catbox.moe/0hies4.jpg",
+    "https://files.catbox.moe/hnbks1.jpg",
+    "https://files.catbox.moe/htcdyl.jpg",
+    "https://files.catbox.moe/pamcr7.jpg",
+    "https://files.catbox.moe/k1w8sw.jpg",
+    "https://files.catbox.moe/tdqof8.jpg",
+    "https://files.catbox.moe/e5zkcl.jpg"
+]
+
+# VIDEO PAPTT
+PAPTT_VIDEO = [
+    "https://files.catbox.moe/85mjwm.mp4",
+    "https://files.catbox.moe/ec28m8.mp4",
+    "https://files.catbox.moe/n3ebuz.mp4",
+    "https://files.catbox.moe/zqaszb.mp4",
+    "https://files.catbox.moe/34aa39.mp4",
+    "https://files.catbox.moe/dmbizk.mp4",
+    "https://files.catbox.moe/wmda7z.mp4",
+    "https://files.catbox.moe/y1osro.mp4",
+    "https://files.catbox.moe/o1ipxw.mp4",
+    "https://files.catbox.moe/i6335n.mp4",
+    "https://files.catbox.moe/vxe9zl.mp4",
+    "https://files.catbox.moe/o1sq2k.mp4",
+    "https://files.catbox.moe/1a78ht.mp4",
+    "https://files.catbox.moe/iajl3r.mp4",
+    "https://files.catbox.moe/eti8qi.mp4",
+    "https://files.catbox.moe/wgj8vl.mp4",
+    "https://files.catbox.moe/83fd5h.mp4",
+    "https://files.catbox.moe/6di4hn.mp4",
+    "https://files.catbox.moe/0eisok.mp4"
+]
+
+CAPTION = "💖 <b>Random Paptt</b>\n🔥"
+
+@PY.UBOT("paptt")
+async def kayes_cmd(client, message):
+    try:
+        # gabung foto + video
+        media_type = random.choice(["photo", "video"])
+
+        if media_type == "photo":
+            media = random.choice(PAPTT_PHOTO)
+            await message.reply_photo(
+                photo=media,
+                caption=CAPTION
+            )
+        else:
+            media = random.choice(PAPTT_VIDEO)
+            await message.reply_video(
+                video=media,
+                caption=CAPTION
+            )
+
+        # auto react
+        await message.react("🔥")
+
+    except Exception:
+        await message.reply_text("❌ Gagal mengambil Paptt!")
+        
